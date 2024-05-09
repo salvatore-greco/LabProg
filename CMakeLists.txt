@@ -6,4 +6,6 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(LaboratorioProgrammazione
     main.cpp
     Activity.cpp
-    Date.cpp)
+    Date.cpp
+        TodoList.cpp
+        TodoList.h)
