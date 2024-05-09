@@ -4,11 +4,11 @@
 
 #ifndef LABPROG_DATE_H
 #define LABPROG_DATE_H
-
+#include <stdexcept>
 
 class Date {
 public:
-    Date(int d, int m, int a): dd(d), mm(m), aaaa(a){};
+    Date(int d, int m, int y);
 
     int getDd() const {
         return dd;
@@ -18,14 +18,19 @@ public:
         return mm;
     }
 
-    int getAaaa() const {
-        return aaaa;
+    int getYyyy() const {
+        return yyyy;
     }
 
 private:
     int dd;
     int mm;
-    int aaaa;
+    int yyyy;
+
+    bool isValidDay() const;
+    bool isValidDate() const;
+    bool isLeapYear() const;
+
 };
 
 
