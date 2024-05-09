@@ -8,7 +8,7 @@
 
 using namespace std;
 
-enum class priority{
+enum class Priority{
     low,
     medium,
     high
@@ -16,14 +16,25 @@ enum class priority{
 
 class Activity {
 public:
-    //think about which constructor use
+    Activity(string n, string descr, Date date, Priority p, bool c = false): name(n), description(descr), priority(p), isCompleted(c), dueDate(date){};
+
+    void setName(const string &name);
+
+    void setDescription(const string &description);
+
+    void setPriority(Priority priority);
+
+    void setIsCompleted(bool isCompleted);
+
+    void setDueDate(const Date &dueDate);
+
 private:
-    int id;
+    //int id; think if it's useful or not
     string name; //main title of the activity
     string description; //extended description of it
     Date dueDate;
-    priority priority;
-    bool completed;
+    Priority priority;
+    bool isCompleted;
 };
 
 
