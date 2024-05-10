@@ -1,5 +1,5 @@
-
 #include "Date.h"
+
 Date::Date(int d, int m, int y): dd(d), mm(m), yyyy(y) {
     if(!isValidDate())
         throw std::invalid_argument("Provided an invalid date");
@@ -38,6 +38,14 @@ bool Date::isLeapYear() const {
         }
         return true;
     }
+    return false;
+}
+
+bool Date::operator<(const Date &rhs) { //testato al volo su un piccolo programma, ovviamente dopo lo testo con un unit test
+    int left = ((this->yyyy << 4) | (this->mm << 2)) | this->dd;
+    int right = ((rhs.yyyy << 4) | (rhs.mm << 2)) | rhs.dd;
+    if(left<right)
+        return true;
     return false;
 }
 

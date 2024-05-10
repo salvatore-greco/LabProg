@@ -1,7 +1,3 @@
-//
-// Created by salvatore on 09/05/24.
-//
-
 #ifndef LABPROG_DATE_H
 #define LABPROG_DATE_H
 #include <stdexcept>
@@ -21,7 +17,7 @@ public:
     int getYyyy() const {
         return yyyy;
     }
-
+    bool operator<(const Date& rhs);
 private:
     int dd;
     int mm;
