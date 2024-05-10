@@ -28,8 +28,18 @@ public:
 
     void setDueDate(const Date &dueDate);
 
+    const string &getName() const;
+
+    const string &getDescription() const;
+
+    const Date &getDueDate() const;
+
+    Priority getPriority() const;
+
+    bool isCompleted1() const;
+
 private:
-    //int id; think if it's useful or not
+    //int id;
     string name; //main title of the activity
     string description; //extended description of it
     Date dueDate;

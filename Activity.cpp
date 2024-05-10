@@ -21,4 +21,25 @@ void Activity::setDueDate(const Date &dueDate) {
     Activity::dueDate = dueDate;
 }
 
+const string &Activity::getName() const {
+    return name;
+}
+
+const string &Activity::getDescription() const {
+    return description;
+}
+
+const Date &Activity::getDueDate() const {
+    return dueDate;
+}
+
+Priority Activity::getPriority() const {
+    return priority;
+}
+
+bool Activity::isCompleted1() const {
+    return isCompleted;
+}
+
+
 
