@@ -41,7 +41,7 @@ void TodoList::showAllActivity() {
         else if (p == Priority::medium)
             priority = "medium";
         else
-            priority = "high";
+            priority = "high"; //fa schifo si può fare meglio
 
         cout << i << " " << todo.getName() << " " << todo.getDescription() << " " << todo.getDueDate().getDd() << "/"
              << todo.getDueDate().getMm() << "/" << todo.getDueDate().getYyyy() << " "<<priority<<endl;
@@ -50,5 +50,11 @@ void TodoList::showAllActivity() {
 
 const string &TodoList::getName() const {
     return name;
+}
+
+void TodoList::showExpiringActivity(int day) {
+    for (const auto& todo: todos){
+
+    }
 }
 

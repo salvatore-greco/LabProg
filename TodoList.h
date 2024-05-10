@@ -2,6 +2,7 @@
 #define LABORATORIOPROGRAMMAZIONE_TODOLIST_H
 
 #include <list>
+#include <algorithm>
 #include <fstream>
 #include "Activity.h"
 #include <iostream>
