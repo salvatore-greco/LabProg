@@ -41,5 +41,11 @@ bool Activity::isCompleted() const {
     return completed;
 }
 
+void Activity::printActivity() const {
+    cout << name << " " << description << " " << dueDate.getDd() << "/"
+         << dueDate.getMm() << "/" << dueDate.getYyyy() << " "<<priorityToString(priority)<<endl;
+
+}
+
 
 

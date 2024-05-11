@@ -4,6 +4,7 @@
 #define LABPROG_ACTIVITY_H
 
 #include <string>
+#include <iostream>
 #include "Date.h"
 
 using namespace std;
@@ -46,6 +47,8 @@ public:
     Priority getPriority() const;
 
     bool isCompleted() const;
+
+    void printActivity() const;
 
 private:
     //int id;
