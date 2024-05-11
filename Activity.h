@@ -16,7 +16,7 @@ enum class Priority{
 
 class Activity {
 public:
-    Activity(string n, string descr, Date date, Priority p, bool c = false): name(n), description(descr), priority(p), isCompleted(c), dueDate(date){};
+    Activity(string n, string descr, Date date, Priority p, bool c = false): name(n), description(descr), priority(p), completed(c), dueDate(date){};
 
     void setName(const string &name);
 
@@ -36,7 +36,7 @@ public:
 
     Priority getPriority() const;
 
-    bool isCompleted1() const;
+    bool isCompleted() const;
 
 private:
     //int id;
@@ -44,7 +44,7 @@ private:
     string description; //extended description of it
     Date dueDate;
     Priority priority;
-    bool isCompleted;
+    bool completed;
 };
 
 

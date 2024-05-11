@@ -14,7 +14,7 @@ void Activity::setPriority(Priority priority) {
 }
 
 void Activity::setIsCompleted(bool isCompleted) {
-    Activity::isCompleted = isCompleted;
+    Activity::completed = isCompleted;
 }
 
 void Activity::setDueDate(const Date &dueDate) {
@@ -37,8 +37,8 @@ Priority Activity::getPriority() const {
     return priority;
 }
 
-bool Activity::isCompleted1() const {
-    return isCompleted;
+bool Activity::isCompleted() const {
+    return completed;
 }
 
 

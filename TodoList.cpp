@@ -52,9 +52,10 @@ const string &TodoList::getName() const {
     return name;
 }
 
-void TodoList::showExpiringActivity(int day) {
+/*void TodoList::showExpiringActivity(int day) {
+    cout<<"attività in scadenza fra "<<day<<"giorni: "<<endl;
     for (const auto& todo: todos){
-
+        if(todo.getDueDate()
     }
-}
+}*/
 
