@@ -3,9 +3,14 @@ project(LaboratorioProgrammazione)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(LaboratorioProgrammazione
-    main.cpp
-    Activity.cpp
-    Date.cpp
+add_subdirectory(test)
+set(SOURCE_FILES Activity.cpp
+        Date.cpp
         TodoList.cpp
         TodoList.h)
+
+
+add_executable(TodoList main.cpp)
+add_library(core ${SOURCE_FILES})
+target_link_libraries(TodoList core)
+
