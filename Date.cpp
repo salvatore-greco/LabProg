@@ -20,7 +20,10 @@ bool Date::isValidDay() const {
                 return false;
             return true;
         case 2:
-            if((isLeapYear() && dd >29) || (!isLeapYear() && dd>29))
+            if(isLeapYear() && dd>29){
+                    return false;
+            }
+            if(!isLeapYear() && dd>28)
                 return false;
             return true;
         default:
