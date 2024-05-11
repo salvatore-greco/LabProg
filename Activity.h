@@ -14,6 +14,15 @@ enum class Priority{
     high
 };
 
+static string priorityToString(Priority p){
+    if(p == Priority::low)
+        return "low";
+    else if (p == Priority::medium)
+        return "medium";
+    else
+        return "high";
+}
+
 class Activity {
 public:
     Activity(string n, string descr, Date date, Priority p, bool c = false): name(n), description(descr), priority(p), completed(c), dueDate(date){};

@@ -30,21 +30,11 @@ bool TodoList::completeActivity(int pos) {
 }
 
 void TodoList::showAllActivity() {
-    int i = 1;
-    Priority p;
-    string priority;
+    int i = 0;
     cout << "indice - nome - descrizione - data di scadenza - priorità" << endl;
     for (const auto &todo: todos) {
-        p = todo.getPriority();
-        if(p == Priority::low)
-            priority = "low";
-        else if (p == Priority::medium)
-            priority = "medium";
-        else
-            priority = "high"; //fa schifo si può fare meglio
-
-        cout << i << " " << todo.getName() << " " << todo.getDescription() << " " << todo.getDueDate().getDd() << "/"
-             << todo.getDueDate().getMm() << "/" << todo.getDueDate().getYyyy() << " "<<priority<<endl;
+        cout << ++i << " " << todo.getName() << " " << todo.getDescription() << " " << todo.getDueDate().getDd() << "/"
+             << todo.getDueDate().getMm() << "/" << todo.getDueDate().getYyyy() << " "<<priorityToString(todo.getPriority())<<endl;
     }
 }
 
