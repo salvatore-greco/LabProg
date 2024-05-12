@@ -1,5 +1,9 @@
 #include "TodoList.h"
 
+const string &TodoList::getName() const {
+    return name;
+}
+
 void TodoList::addActivity(string name, string descr, Date date, Priority p) {
     try {
         Activity act(name, descr, date, p);
@@ -9,7 +13,7 @@ void TodoList::addActivity(string name, string descr, Date date, Priority p) {
     }
 }
 
-bool TodoList::removeActivity(const string& key) {
+bool TodoList::removeActivity(const string &key) {
     if (todos.empty())
         return false;
     todos.erase(key);
@@ -28,31 +32,49 @@ void TodoList::showAllActivity() {
     int i = 0;
     cout << "indice - nome - descrizione - data di scadenza - priorità" << endl;
     for (const auto &todo: todos) {
-        cout << ++i<< " ";
+        cout << ++i << " ";
         todo.second.printActivity();
     }
 }
 
-const string &TodoList::getName() const {
-    return name;
-}
-
 void TodoList::showNotCompletedActivity() {
     cout << "indice - nome - descrizione - data di scadenza - priorità" << endl;
-    for(const auto &todo: todos)
-        if(todo.second.isCompleted())
+    for (const auto &todo: todos)
+        if (todo.second.isCompleted())
             todo.second.printActivity();
 
 }
 
 void TodoList::showExpiringActivity(int day) {
     time_t now = time(0);
-    tm* tmTime = localtime(&now);
-    Date today(tmTime->tm_mday, tmTime->tm_mon+1, tmTime->tm_year);
-    cout<<"attività in scadenza fra "<<day<<" giorni: "<<endl;
-    for(const auto &todo:todos){
-        if(Date::distanceBetween(todo.second.getDueDate(), today)<=day)
+    tm *tmTime = localtime(&now);
+    Date today(tmTime->tm_mday, tmTime->tm_mon + 1, tmTime->tm_year);
+    cout << "attività in scadenza fra " << day << " giorni: " << endl;
+    for (const auto &todo: todos) {
+        if (Date::distanceBetween(todo.second.getDueDate(), today) <= day)
             todo.second.printActivity();
     }
 }
+
+void TodoList::showPrioritySort() {
+    //TODO: implementazione bruttissima ma sono le 3, non ho trovato altro modo al momento
+    cout << "--- ALTA PRIORITÀ ---" << endl;
+    for (const auto &todo: todos) {
+        if (todo.second.getPriority() == Priority::high)
+            todo.second.printActivity();
+    }
+    cout << "--- MEDIA PRIORITÀ ---" << endl;
+    for (const auto &todo: todos) {
+        if (todo.second.getPriority() == Priority::medium)
+            todo.second.printActivity();
+    }
+    cout << "--- BASSA PRIORITÀ ---" << endl;
+    for (const auto &todo: todos) {
+        if (todo.second.getPriority() == Priority::low)
+            todo.second.printActivity();
+    }
+}
+
+
+
 
