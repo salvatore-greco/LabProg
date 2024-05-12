@@ -44,11 +44,25 @@ bool Date::isLeapYear() const {
     return false;
 }
 
-bool Date::operator<(const Date &rhs) { //testato al volo su un piccolo programma, ovviamente dopo lo testo con un unit test
+bool Date::operator<(const Date &rhs) const{
     int left = ((this->yyyy << 4) | (this->mm << 2)) | this->dd;
     int right = ((rhs.yyyy << 4) | (rhs.mm << 2)) | rhs.dd;
     if(left<right)
         return true;
     return false;
 }
+
+bool Date::operator==(const Date &rhs) const {
+    if(dd == rhs.dd && mm == rhs.mm && yyyy == rhs.yyyy)
+        return true;
+    return false;
+}
+
+int Date::distanceBetween(const Date d1, const Date d2) {
+    int convertedD1 = ((d1.yyyy << 4) | (d1.mm << 2)) | d1.dd;
+    int convertedD2 = ((d2.yyyy << 4) | (d2.mm << 2)) | d2.dd;
+    return abs(convertedD1-convertedD2);
+}
+
+
 
