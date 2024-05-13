@@ -75,6 +75,24 @@ void TodoList::showPrioritySort() {
     }
 }
 
+void TodoList::saveToFile() {
+    string comp = "false";
+    ofstream file(name+".csv"); //creo il file e lo apro
+    if(!file.is_open())
+        throw std::runtime_error("Error while opening file!");
+    for(const auto &todo : todos){
+        if(todo.second.isCompleted())
+            comp = "true";
+        file << todo.second.getName()<<","<<todo.second.getDescription()<<","<<todo.second.getDueDate().getDd()<<","<<todo.second.getDueDate().getMm()<<","<<todo.second.getDueDate().getYyyy()<<","<<priorityToString(todo.second.getPriority())<<","<<comp;
+        if(file.bad()) {
+            file.close();
+            throw std::runtime_error("Error while writing in file");
+        }
+    }
+    file.close();
+}
+
+
 
 
 

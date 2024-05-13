@@ -11,7 +11,7 @@
 
 class TodoList {
 public:
-    TodoList(string n) : name(n) {};
+    TodoList(string n):name(){};
 
     void addActivity(string name, string descr, Date date, Priority p);
     bool removeActivity(const string &key);
@@ -23,10 +23,12 @@ public:
     void saveToFile();
     void restoreFromFile();
     const string &getName() const;
+    inline const int getSize() const{ //mi serve per gli unit test
+        return (int)todos.size();
+    }
 private:
     std::unordered_map<string, Activity> todos;
     string name;
-    fstream file;
 };
 
 
