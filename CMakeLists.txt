@@ -7,7 +7,7 @@ add_subdirectory(test)
 set(SOURCE_FILES Activity.cpp
         Date.cpp
         TodoList.cpp
-        TodoList.h)
+)
 
 
 add_executable(TodoList main.cpp)
