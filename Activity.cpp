@@ -42,8 +42,10 @@ bool Activity::isCompleted() const {
 }
 
 void Activity::printActivity() const {
+    string comp;
+    isCompleted() ? comp = "true" : comp ="false";
     cout << name << " " << description << " " << dueDate.getDd() << "/"
-         << dueDate.getMm() << "/" << dueDate.getYyyy() << " "<<priorityToString(priority)<<endl;
+         << dueDate.getMm() << "/" << dueDate.getYyyy() << " "<<priorityToString(priority)<<" "<<comp<<endl;
 
 }
 

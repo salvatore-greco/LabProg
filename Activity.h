@@ -8,14 +8,14 @@
 #include "Date.h"
 
 using namespace std;
-
+//todo: refactor, trova una posizione migliore per questa enum; potrei fare una wrapper class che ha i metodi toString e toPriority
 enum class Priority{
     low,
     medium,
     high
 };
 
-static string priorityToString(Priority p){
+static string priorityToString(const Priority& p){
     if(p == Priority::low)
         return "low";
     else if (p == Priority::medium)
@@ -23,10 +23,18 @@ static string priorityToString(Priority p){
     else
         return "high";
 }
+static Priority stringToPriority(const string& s){
+    if(s=="low")
+        return Priority::low;
+    else if(s=="medium")
+        return Priority::medium;
+    else return Priority::high;
+}
+
 
 class Activity {
 public:
-    Activity(string n, string descr, Date date, Priority p, bool c = false): name(n), description(descr), priority(p), completed(c), dueDate(date){};
+    explicit Activity(string n, string descr, Date date, Priority p, bool c = false): name(n), description(descr), dueDate(date), priority(p), completed(c) {};
 
     void setName(const string &name);
 
@@ -51,7 +59,6 @@ public:
     void printActivity() const;
 
 private:
-    //int id;
     string name; //main title of the activity
     string description; //extended description of it
     Date dueDate;
