@@ -4,9 +4,9 @@ const string &TodoList::getName() const {
     return name;
 }
 
-void TodoList::addActivity(string name, string descr, Date date, Priority p) {
+void TodoList::addActivity(string name, string descr, Date date, Priority p, bool c) {
     try {
-        Activity act(name, descr, date, p);
+        Activity act(name, descr, date, p, c);
         todos.insert(make_pair(act.getName(), act));
     } catch (std::invalid_argument &e) {
         std::cerr << e.what() << " aborting" << std::endl;
@@ -14,18 +14,18 @@ void TodoList::addActivity(string name, string descr, Date date, Priority p) {
 }
 
 bool TodoList::removeActivity(const string &key) {
-    if (todos.empty())
+    if (todos.empty() || todos.erase(key) == 0)
         return false;
-    todos.erase(key);
     return true;
 }
 
 bool TodoList::completeActivity(const string &key) {
-    if (todos.empty())
-        return false;
     auto it = todos.find(key);
-    it->second.setIsCompleted(true);
-    return true;
+    if (it != todos.end()) { //copre anche il caso nel quale la lista sia vuota
+        it->second.setIsCompleted(true);
+        return true;
+    }
+    return false;
 }
 
 void TodoList::showAllActivity() {
@@ -39,10 +39,11 @@ void TodoList::showAllActivity() {
 
 void TodoList::showNotCompletedActivity() {
     cout << "indice - nome - descrizione - data di scadenza - priorità" << endl;
-    for (const auto &todo: todos)
-        if (todo.second.isCompleted())
+    for (const auto &todo: todos) {
+        if (todo.second.isCompleted()){
             todo.second.printActivity();
-
+        }
+    }
 }
 
 void TodoList::showExpiringActivity(int day) {
@@ -76,21 +77,47 @@ void TodoList::showPrioritySort() {
 }
 
 void TodoList::saveToFile() {
-    string comp = "false";
-    ofstream file(name+".csv"); //creo il file e lo apro
-    if(!file.is_open())
+    string comp;
+    ofstream file("../" + name + ".csv"); //creo il file e lo apro
+    if (!file.is_open())
         throw std::runtime_error("Error while opening file!");
-    for(const auto &todo : todos){
-        if(todo.second.isCompleted())
-            comp = "true";
-        file << todo.second.getName()<<","<<todo.second.getDescription()<<","<<todo.second.getDueDate().getDd()<<","<<todo.second.getDueDate().getMm()<<","<<todo.second.getDueDate().getYyyy()<<","<<priorityToString(todo.second.getPriority())<<","<<comp;
-        if(file.bad()) {
+    for (const auto &todo: todos) {
+        todo.second.isCompleted() ? comp="true" : comp="false"; //bool to string
+        file << todo.second.getName() << "," << todo.second.getDescription() << "," << todo.second.getDueDate().getDd()
+             << "," << todo.second.getDueDate().getMm() << "," << todo.second.getDueDate().getYyyy() << ","
+             << priorityToString(todo.second.getPriority()) << "," << comp << "\n";
+        if (file.bad()) {
             file.close();
             throw std::runtime_error("Error while writing in file");
         }
     }
     file.close();
 }
+
+void TodoList::restoreFromFile() {
+    ifstream file("../" + name + ".csv");
+    if (!file.is_open())
+        throw std::runtime_error("Error while opening file!");
+    string line, name, description, day, month, year, priority, completed;
+    bool isCompleted;
+    while (getline(file, line)) {
+        stringstream ss(line);
+        getline(ss, name, ',');
+        getline(ss, description, ',');
+        getline(ss, day, ',');
+        getline(ss, month, ',');
+        getline(ss, year, ',');
+        getline(ss, priority, ',');
+        getline(ss, completed, ',');
+
+        completed == "true" ? isCompleted = true : isCompleted = false;
+
+        addActivity(name, description, Date(stoi(day), stoi(month), stoi(year)), stringToPriority(priority),
+                    isCompleted);
+    }
+}
+
+
 
 
 
