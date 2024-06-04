@@ -87,7 +87,7 @@ void TodoList::saveToFile() {
              << "," << todo.second.getDueDate().getMm() << "," << todo.second.getDueDate().getYyyy() << ","
              << priorityToString(todo.second.getPriority()) << "," << comp << "\n";
         if (file.bad()) {
-            file.close();
+            file.close(); //in teoria non servirebbe per via dei RAII, ma male non fa e lo lascio lo stesso
             throw std::runtime_error("Error while writing in file");
         }
     }
@@ -115,6 +115,7 @@ void TodoList::restoreFromFile() {
         addActivity(name, description, Date(stoi(day), stoi(month), stoi(year)), stringToPriority(priority),
                     isCompleted);
     }
+    file.close();
 }
 
 
