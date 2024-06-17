@@ -4,14 +4,18 @@
 #include <unordered_map>
 #include <algorithm>
 #include <fstream>
-#include "Activity.h"
-#include "ctime"
+#include <ctime>
 #include <iostream>
 #include <sstream>
+#include "Activity.h"
+
+
 
 class TodoList {
 public:
-    TodoList(string n):name(n){};
+    explicit TodoList(const string& n):name(n){}; // passare come riferimento costante
+
+
 
     void addActivity(string name, string descr, Date date, Priority p, bool c = false);
     bool removeActivity(const string &key);
@@ -28,6 +32,10 @@ public:
     }
     inline void removeAllActivity(){
         todos.clear();
+    }
+    int completedActivity() const;
+    inline int notCompletedActivity() const{
+        return getSize() - completedActivity();
     }
 private:
     std::unordered_map<string, Activity> todos;

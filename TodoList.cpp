@@ -118,6 +118,15 @@ void TodoList::restoreFromFile() {
     file.close();
 }
 
+int TodoList::completedActivity() const{
+    int counter = 0;
+    for(const auto& todo : todos){
+        if(todo.second.isCompleted())
+            counter++;
+    }
+    return counter;
+}
+
 
 
 

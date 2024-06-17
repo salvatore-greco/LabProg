@@ -16,6 +16,7 @@ protected:
 TEST_F(TodoListFixture, addActivity) {
     int size = todoList.getSize();
     EXPECT_NO_THROW(todoList.addActivity("quarta", "descrizione", Date(3, 2, 2024), Priority::high, false));
+    EXPECT_NO_THROW(todoList.addActivity("", "", Date(3, 2, 2024), Priority::high, false)); //no throw perchè l'eccezione viene gestita nel metodo
     EXPECT_EQ(todoList.getSize(), size + 1);
 }
 
@@ -53,8 +54,10 @@ TEST_F(TodoListFixture, removingActivity){
 TEST_F(TodoListFixture, completingActivity){
     ASSERT_TRUE(todoList.completeActivity("prima"));
     ASSERT_FALSE(todoList.completeActivity("attivitànonesistente"));
+    ASSERT_EQ(todoList.completedActivity(), 1);
     todoList.removeAllActivity();
     ASSERT_FALSE(todoList.completeActivity("prima"));
+
 }
 
 TEST_F(TodoListFixture, printingStuff){ //questi intaseranno un po' la console, li faccio una volta e poi non li eseguo più ogni volta, solo all'occorrenza
