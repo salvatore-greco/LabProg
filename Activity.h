@@ -13,23 +13,8 @@ enum class Priority{
     medium,
     high
 };
-
-static string priorityToString(const Priority& p){ //todo: rimuovere static
-    if(p == Priority::low)
-        return "low";
-    else if (p == Priority::medium)
-        return "medium";
-    else
-        return "high";
-};
-
-static Priority stringToPriority(const string& s){
-    if(s=="low")
-        return Priority::low;
-    else if(s=="medium")
-        return Priority::medium;
-    else return Priority::high;
-}
+Priority stringToPriority(const string& s);
+string priorityToString(const Priority& p); //implementazione nel file .c
 
 
 class Activity {
