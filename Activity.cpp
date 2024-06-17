@@ -72,11 +72,13 @@ bool Activity::isCompleted() const {
     return completed;
 }
 
-void Activity::toString() const {
-    string comp;
-    isCompleted() ? comp = "true" : comp ="false";
-    cout << name << " - " << description << " - " << dueDate.getDd() << "/"
-         << dueDate.getMm() << "/" << dueDate.getYyyy() << " - "<<priorityToString(priority)<<" - "<<comp<<endl;
+string Activity::toString() const {
+    stringstream ss;
+    stringstream comp;
+    isCompleted() ? comp << "true" : comp << "false";
+    ss<<name<<" - "<<description<<" - "<<dueDate.getDd()<<"/"<<dueDate.getMm()<<"/"<<dueDate.getYyyy()<<" - "
+    <<priorityToString(priority)<< " - " << completed;
+    return ss.str();
 
 }
 

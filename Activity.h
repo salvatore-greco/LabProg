@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "Date.h"
 
 using namespace std;
@@ -40,7 +41,7 @@ public:
 
     bool isCompleted() const;
 
-    void toString() const; //todo: usa sstream
+    string toString() const; //usa sstream
 
 private:
     string name; //main title of the activity
