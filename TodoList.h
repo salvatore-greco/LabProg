@@ -20,10 +20,10 @@ public:
     void addActivity(string name, string descr, Date date, Priority p, bool c = false);
     bool removeActivity(const string &key);
     bool completeActivity(const string &key);
-    void showAllActivity();
-    void showExpiringActivity(int day = 2);
-    void showNotCompletedActivity();
-    void showPrioritySort();
+    void showAllActivity() const;
+    void showExpiringActivity(int day = 2) const;
+    void showNotCompletedActivity() const;
+    void showPrioritySort() const;
     void saveToFile();
     void restoreFromFile();
     const string &getName() const;

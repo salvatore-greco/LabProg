@@ -28,7 +28,7 @@ bool TodoList::completeActivity(const string &key) {
     return false;
 }
 
-void TodoList::showAllActivity() {
+void TodoList::showAllActivity() const{
     int i = 0;
     cout << "indice - nome - descrizione - data di scadenza - priorità" << endl;
     for (const auto &todo: todos) {
@@ -37,7 +37,7 @@ void TodoList::showAllActivity() {
     }
 }
 
-void TodoList::showNotCompletedActivity() {
+void TodoList::showNotCompletedActivity() const {
     cout << "indice - nome - descrizione - data di scadenza - priorità" << endl;
     for (const auto &todo: todos) {
         if (todo.second.isCompleted()){
@@ -46,7 +46,7 @@ void TodoList::showNotCompletedActivity() {
     }
 }
 
-void TodoList::showExpiringActivity(int day) {
+void TodoList::showExpiringActivity(int day) const{
     time_t now = time(0);
     tm *tmTime = localtime(&now);
     Date today(tmTime->tm_mday, tmTime->tm_mon + 1, tmTime->tm_year);
@@ -57,7 +57,7 @@ void TodoList::showExpiringActivity(int day) {
     }
 }
 
-void TodoList::showPrioritySort() {
+void TodoList::showPrioritySort() const{
     //TODO: implementazione bruttissima ma sono le 3, non ho trovato altro modo al momento
     cout << "--- ALTA PRIORITÀ ---" << endl;
     for (const auto &todo: todos) {
