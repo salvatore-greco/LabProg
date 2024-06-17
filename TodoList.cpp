@@ -33,7 +33,7 @@ void TodoList::showAllActivity() {
     cout << "indice - nome - descrizione - data di scadenza - priorità" << endl;
     for (const auto &todo: todos) {
         cout << ++i << " ";
-        todo.second.printActivity();
+        todo.second.toString();
     }
 }
 
@@ -41,7 +41,7 @@ void TodoList::showNotCompletedActivity() {
     cout << "indice - nome - descrizione - data di scadenza - priorità" << endl;
     for (const auto &todo: todos) {
         if (todo.second.isCompleted()){
-            todo.second.printActivity();
+            todo.second.toString();
         }
     }
 }
@@ -53,7 +53,7 @@ void TodoList::showExpiringActivity(int day) {
     cout << "attività in scadenza fra " << day << " giorni: " << endl;
     for (const auto &todo: todos) {
         if (Date::distanceBetween(todo.second.getDueDate(), today) <= day)
-            todo.second.printActivity();
+            todo.second.toString();
     }
 }
 
@@ -62,17 +62,17 @@ void TodoList::showPrioritySort() {
     cout << "--- ALTA PRIORITÀ ---" << endl;
     for (const auto &todo: todos) {
         if (todo.second.getPriority() == Priority::high)
-            todo.second.printActivity();
+            todo.second.toString();
     }
     cout << "--- MEDIA PRIORITÀ ---" << endl;
     for (const auto &todo: todos) {
         if (todo.second.getPriority() == Priority::medium)
-            todo.second.printActivity();
+            todo.second.toString();
     }
     cout << "--- BASSA PRIORITÀ ---" << endl;
     for (const auto &todo: todos) {
         if (todo.second.getPriority() == Priority::low)
-            todo.second.printActivity();
+            todo.second.toString();
     }
 }
 
