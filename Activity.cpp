@@ -25,10 +25,18 @@ Activity::Activity(string n, string descr, Date date, Priority p, bool c) : name
 }
 
 void Activity::setName(const string &name) {
+    if(name.empty()){
+        std::cerr<<"name cannot be empty, aborting"<<endl;
+        return;
+    }
     Activity::name = name;
 }
 
 void Activity::setDescription(const string &description) {
+    if(description.empty()) {
+        std::cerr << "description cannot be empty, aborting" << endl;
+        return;
+    }
     Activity::description = description;
 }
 

@@ -6,7 +6,6 @@
 #include "Date.h"
 
 using namespace std;
-//todo: refactor, trova una posizione migliore per questa enum; potrei fare una wrapper class che ha i metodi toString e toPriority
 
 enum class Priority{
     low,
@@ -20,7 +19,7 @@ string priorityToString(const Priority& p); //implementazione nel file .c
 class Activity {
 public:
     Activity(string n, string descr, Date date, Priority p, bool c = false);
-    //todo: controllo nullità n e descr
+    //controllo nullità n e descr
     void setName(const string &name);
 
     void setDescription(const string &description);
