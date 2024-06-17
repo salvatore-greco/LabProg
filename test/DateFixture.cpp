@@ -27,3 +27,9 @@ TEST_F(DateFixture, operatorOverloading){
     ASSERT_TRUE(normalDate < anotherNormalDate);
     ASSERT_FALSE(leapYearDate < anotherNormalDate);
 }
+//testa distance
+TEST_F(DateFixture, distanceBetween){
+    Date compareDate = Date(6,12,2019);
+    ASSERT_EQ(Date::distanceBetween(normalDate, compareDate), 5);
+    ASSERT_EQ(Date::distanceBetween(normalDate, leapYearDate), 1551);
+}

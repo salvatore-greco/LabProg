@@ -20,6 +20,8 @@ public:
     bool operator<(const Date& rhs) const;
     bool operator==(const Date &rhs) const;
     static int distanceBetween(const Date d1, const Date d2);
+
+
 private:
     int dd;
     int mm;
@@ -27,7 +29,7 @@ private:
 
     bool isValidDay() const;
     bool isValidDate() const;
-    bool isLeapYear() const;
+    static bool isLeapYear(int yyyy);
 
 };
 
