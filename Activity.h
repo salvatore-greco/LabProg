@@ -1,5 +1,3 @@
-
-
 #ifndef LABPROG_ACTIVITY_H
 #define LABPROG_ACTIVITY_H
 
@@ -9,20 +7,22 @@
 
 using namespace std;
 //todo: refactor, trova una posizione migliore per questa enum; potrei fare una wrapper class che ha i metodi toString e toPriority
+
 enum class Priority{
     low,
     medium,
     high
 };
 
-static string priorityToString(const Priority& p){
+static string priorityToString(const Priority& p){ //todo: rimuovere static
     if(p == Priority::low)
         return "low";
     else if (p == Priority::medium)
         return "medium";
     else
         return "high";
-}
+};
+
 static Priority stringToPriority(const string& s){
     if(s=="low")
         return Priority::low;
@@ -34,8 +34,8 @@ static Priority stringToPriority(const string& s){
 
 class Activity {
 public:
-    explicit Activity(string n, string descr, Date date, Priority p, bool c = false): name(n), description(descr), dueDate(date), priority(p), completed(c) {};
-
+    Activity(string n, string descr, Date date, Priority p, bool c = false);
+    //todo: controllo nullità n e descr
     void setName(const string &name);
 
     void setDescription(const string &description);
@@ -56,7 +56,7 @@ public:
 
     bool isCompleted() const;
 
-    void printActivity() const;
+    void toString() const; //todo: usa sstream
 
 private:
     string name; //main title of the activity

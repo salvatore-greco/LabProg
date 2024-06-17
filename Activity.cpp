@@ -1,5 +1,9 @@
 #include "Activity.h"
 
+Activity::Activity(string n, string descr, Date date, Priority p, bool c) : name(n), description(descr), dueDate(date), priority(p), completed(c){
+    if (n.empty() || descr.empty())
+        throw std::invalid_argument("name or description is empty");
+}
 
 void Activity::setName(const string &name) {
     Activity::name = name;
@@ -41,13 +45,15 @@ bool Activity::isCompleted() const {
     return completed;
 }
 
-void Activity::printActivity() const {
+void Activity::toString() const {
     string comp;
     isCompleted() ? comp = "true" : comp ="false";
     cout << name << " - " << description << " - " << dueDate.getDd() << "/"
          << dueDate.getMm() << "/" << dueDate.getYyyy() << " - "<<priorityToString(priority)<<" - "<<comp<<endl;
 
 }
+
+
 
 
 
